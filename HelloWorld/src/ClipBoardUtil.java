@@ -4,6 +4,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,6 +23,22 @@ public class ClipBoardUtil{
         ImageIO.write((RenderedImage) im,"jpg",file);        		
         byte[] b = out.toByteArray(); 
         System.out.println(b);
+        
+        /*The codes below, we will get the picture's RGB, 
+         * first of all, we will get the picture's scale*/
+        int[] rgb = new int[3];// a array for RGB
+		int width = ((RenderedImage) im).getWidth();
+		int height = ((RenderedImage) im).getHeight();
+		int minx = ((RenderedImage) im).getMinX();
+		int miny = ((RenderedImage) im).getMinY();
+		//System.out.println(width);
+		for(int y=miny;y<height;y++){
+			for(int x=minx;x<width;x++){
+				//to aquire the RGB of the point
+				int pointRGB = ((BufferedImage) im).getRGB(x,y);
+				System.out.println(pointRGB);
+			}
+		}
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
