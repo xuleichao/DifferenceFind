@@ -7,9 +7,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-
 import javax.imageio.*;
-
 import javax.imageio.ImageIO;
 
 public class ClipBoardUtil{
