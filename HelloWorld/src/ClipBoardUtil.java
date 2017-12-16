@@ -36,7 +36,11 @@ public class ClipBoardUtil{
 			for(int x=minx;x<width;x++){
 				//to aquire the RGB of the point
 				int pointRGB = ((BufferedImage) im).getRGB(x,y);
-				System.out.println(pointRGB);
+				//System.out.println(pointRGB);
+				rgb[0] = (pointRGB & 0xff0000) >> 16;
+				rgb[1] = (pointRGB & 0xff00) >> 8;
+				rgb[2] = (pointRGB & 0xff); 
+				System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
 			}
 		}
     }
