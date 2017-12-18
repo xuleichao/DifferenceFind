@@ -58,4 +58,44 @@ public class ClipBoardUtil{
             return (Image) cc.getTransferData(DataFlavor.imageFlavor);  
         return null;  
     }  
+    /*So now, I shoul to write a program to get the picture
+     * This class is to get a array that contains the RGB of the picture*/
+    public static Image getPictureArray(BufferedImage pic1, BufferedImage pic2) throws Exception{
+		int[] rgb_pic1 = new int[3];
+		int[] rgb_pic2 = new int[3];
+		
+		int pic1_Width = pic1.getWidth();
+		int pic2_Width = pic2.getWidth();
+		
+		int pic1_Height = pic1.getHeight();
+		int pic2_Height = pic2.getHeight();
+		
+		int pic1_minx = pic1.getMinX();
+		int pic2_minx = pic2.getMinX();
+		
+		int pic1_miny = pic1.getMinY();
+		int pic2_miny = pic2.getMinY();
+		
+		//Define a new pic as the result picture
+		BufferedImage result_pic;
+		for(int x=pic1_minx; x<=pic1_Width; x++){
+			for(int y=pic1_miny; y<=pic1_Height; y++){
+				//get the RGBs of two pictures
+				int RGB_pic1 = pic1.getRGB(x, y);
+				int RGB_pic2 = pic2.getRGB(x, y);
+				
+				rgb_pic1[0] = (RGB_pic1 & 0xff0000) >> 16;
+				rgb_pic1[1] = (RGB_pic1 & 0xff00) >> 8;
+				rgb_pic1[2] = (RGB_pic1 & 0xff);
+				
+				rgb_pic2[0] = (RGB_pic2 & 0xff0000) >> 16;
+				rgb_pic2[1] = (RGB_pic2 & 0xff00) >> 8;
+				rgb_pic2[2] = (RGB_pic2 & 0xff);
+				
+				
+			}
+			
+		}
+    	
+    }
 }
