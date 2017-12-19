@@ -8,8 +8,11 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+
 import javax.imageio.*;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
 
 public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
@@ -43,8 +46,13 @@ public class ClipBoardUtil{
 				//System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
 			}
 		}
-		
-		BufferedImage a = (BufferedImage) getPictureArray((BufferedImage)im,(BufferedImage)im);
+		FileImageInputStream ima1 = 
+				new FileImageInputStream
+				(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
+		FileImageInputStream ima2 = 
+				new FileImageInputStream
+				(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
+		BufferedImage a = (BufferedImage) getPictureArray((BufferedImage)ima1,(BufferedImage)ima2);
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
