@@ -40,9 +40,11 @@ public class ClipBoardUtil{
 				rgb[0] = (pointRGB & 0xff0000) >> 16;
 				rgb[1] = (pointRGB & 0xff00) >> 8;
 				rgb[2] = (pointRGB & 0xff); 
-				System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
+				//System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
 			}
 		}
+		
+		BufferedImage a = (BufferedImage) getPictureArray((BufferedImage)im,(BufferedImage)im);
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
@@ -77,9 +79,9 @@ public class ClipBoardUtil{
 		int pic2_miny = pic2.getMinY();
 		
 		//Define a new pic as the result picture
-		BufferedImage result_pic;
-		for(int x=pic1_minx; x<=pic1_Width; x++){
-			for(int y=pic1_miny; y<=pic1_Height; y++){
+		BufferedImage result_pic = null;
+		for(int x=pic1_minx; x<pic1_Width; x++){
+			for(int y=pic1_miny; y<pic1_Height; y++){
 				//get the RGBs of two pictures
 				int RGB_pic1 = pic1.getRGB(x, y);
 				int RGB_pic2 = pic2.getRGB(x, y);
@@ -91,11 +93,20 @@ public class ClipBoardUtil{
 				rgb_pic2[0] = (RGB_pic2 & 0xff0000) >> 16;
 				rgb_pic2[1] = (RGB_pic2 & 0xff00) >> 8;
 				rgb_pic2[2] = (RGB_pic2 & 0xff);
+				//System.out.println("1--"+rgb_pic1[0]+"---"+rgb_pic1[1]+"---"+rgb_pic1[2]);
+				//System.out.println("2--"+rgb_pic2[0]+"---"+rgb_pic2[1]+"---"+rgb_pic2[2]);
+				if ((rgb_pic1[0] == rgb_pic2[0])
+						&&(rgb_pic1[1] == rgb_pic2[1])
+						&&(rgb_pic1[2] == rgb_pic2[2])){
+					System.out.println("yes");
+				}
+				//return (Image)pic1;
 				
 				
 			}
 			
 		}
+		return result_pic;
     	
     }
 }
