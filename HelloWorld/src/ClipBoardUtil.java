@@ -46,13 +46,9 @@ public class ClipBoardUtil{
 				//System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
 			}
 		}
-		FileImageInputStream ima1 = 
-				new FileImageInputStream
-				(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
-		FileImageInputStream ima2 = 
-				new FileImageInputStream
-				(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
-		BufferedImage a = (BufferedImage) getPictureArray((BufferedImage)ima1,(BufferedImage)ima2);
+		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
+		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
+		BufferedImage a = (BufferedImage) getPictureArray(ima1,ima2);
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
@@ -107,6 +103,8 @@ public class ClipBoardUtil{
 						&&(rgb_pic1[1] == rgb_pic2[1])
 						&&(rgb_pic1[2] == rgb_pic2[2])){
 					System.out.println("yes");
+				}else{
+					System.out.println("no");
 				}
 				//return (Image)pic1;
 				
