@@ -53,7 +53,7 @@ public class ClipBoardUtil{
 		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
 		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
 		BufferedImage a = (BufferedImage) getPictureArray(ima1,ima2);
-		ImageIO.write(a, "PNG", new File("G:/Github_codes/DifferenceFind/HelloWorld/result.png"));
+		ImageIO.write(a, "JPG", new File("G:/Github_codes/DifferenceFind/HelloWorld/result.jpg"));
 		System.out.println("搞定");
     }
     public static void setSysClipboardText(String writeMe){  
@@ -89,7 +89,7 @@ public class ClipBoardUtil{
 		int pic2_miny = pic2.getMinY();
 		
 		//Define a new pic as the result picture
-		BufferedImage result_pic = new BufferedImage(pic1_Width, pic1_Height,BufferedImage.TYPE_INT_ARGB);
+		BufferedImage result_pic = new BufferedImage(pic1_Width, pic1_Height,BufferedImage.TYPE_INT_RGB);
 		
 		for(int x=pic1_minx; x<pic1_Width; x++){
 			for(int y=pic1_miny; y<pic1_Height; y++){
@@ -109,7 +109,7 @@ public class ClipBoardUtil{
 				if ((rgb_pic1[0] == rgb_pic2[0])
 						&&(rgb_pic1[1] == rgb_pic2[1])
 						&&(rgb_pic1[2] == rgb_pic2[2])){
-					result_pic.setRGB(x, y, 0xff000000);
+					result_pic.setRGB(x, y, 0xFF000000|rgb_pic1[0]|rgb_pic1[2]|rgb_pic1[2]);
 				}else{
 					result_pic.setRGB(x, y, 0xffffffff);
 				}
