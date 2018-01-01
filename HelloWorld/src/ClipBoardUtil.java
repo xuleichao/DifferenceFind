@@ -49,10 +49,12 @@ public class ClipBoardUtil{
 			}
 		}
 		*/
+    	System.out.println("我们开始做对比");
 		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
 		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
 		BufferedImage a = (BufferedImage) getPictureArray(ima1,ima2);
 		ImageIO.write(a, "PNG", new File("G:/Github_codes/DifferenceFind/HelloWorld/result.png"));
+		System.out.println("搞定");
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
