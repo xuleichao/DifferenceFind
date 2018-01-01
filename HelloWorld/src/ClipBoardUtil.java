@@ -19,6 +19,7 @@ public class ClipBoardUtil{
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
         //setSysClipboardText("dsdfsfsdf");
+    	/*
         im = getImageFromClipboard();
         System.out.println(im);
         boolean flag = ImageIO.write((RenderedImage) im,"gif",out);
@@ -26,9 +27,10 @@ public class ClipBoardUtil{
         ImageIO.write((RenderedImage) im,"jpg",file);        		
         byte[] b = out.toByteArray(); 
         System.out.println(b);
-        
+        */
         /*The codes below, we will get the picture's RGB, 
          * first of all, we will get the picture's scale*/
+        /*
         int[] rgb = new int[3];// a array for RGB
 		int width = ((RenderedImage) im).getWidth();
 		int height = ((RenderedImage) im).getHeight();
@@ -46,9 +48,11 @@ public class ClipBoardUtil{
 				//System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
 			}
 		}
+		*/
 		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
 		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
 		BufferedImage a = (BufferedImage) getPictureArray(ima1,ima2);
+		ImageIO.write(a, "PNG", new File("G:/Github_codes/DifferenceFind/HelloWorld/result.png"));
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
@@ -83,7 +87,8 @@ public class ClipBoardUtil{
 		int pic2_miny = pic2.getMinY();
 		
 		//Define a new pic as the result picture
-		BufferedImage result_pic = null;
+		BufferedImage result_pic = new BufferedImage(pic1_Width, pic1_Height,BufferedImage.TYPE_INT_ARGB);
+		
 		for(int x=pic1_minx; x<pic1_Width; x++){
 			for(int y=pic1_miny; y<pic1_Height; y++){
 				//get the RGBs of two pictures
@@ -102,9 +107,9 @@ public class ClipBoardUtil{
 				if ((rgb_pic1[0] == rgb_pic2[0])
 						&&(rgb_pic1[1] == rgb_pic2[1])
 						&&(rgb_pic1[2] == rgb_pic2[2])){
-					System.out.println("yes");
+					result_pic.setRGB(x, y, 0xff000000);
 				}else{
-					System.out.println("no");
+					result_pic.setRGB(x, y, 0xffffffff);
 				}
 				//return (Image)pic1;
 				
