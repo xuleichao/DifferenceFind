@@ -18,37 +18,6 @@ public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
-        //setSysClipboardText("dsdfsfsdf");
-    	/*
-        im = getImageFromClipboard();
-        System.out.println(im);
-        boolean flag = ImageIO.write((RenderedImage) im,"gif",out);
-        File file = new File ("a.jpg");
-        ImageIO.write((RenderedImage) im,"jpg",file);        		
-        byte[] b = out.toByteArray(); 
-        System.out.println(b);
-        */
-        /*The codes below, we will get the picture's RGB, 
-         * first of all, we will get the picture's scale*/
-        /*
-        int[] rgb = new int[3];// a array for RGB
-		int width = ((RenderedImage) im).getWidth();
-		int height = ((RenderedImage) im).getHeight();
-		int minx = ((RenderedImage) im).getMinX();
-		int miny = ((RenderedImage) im).getMinY();
-		//System.out.println(width);
-		for(int y=miny;y<height;y++){
-			for(int x=minx;x<width;x++){
-				//to aquire the RGB of the point
-				int pointRGB = ((BufferedImage) im).getRGB(x,y);
-				//System.out.println(pointRGB);
-				rgb[0] = (pointRGB & 0xff0000) >> 16;
-				rgb[1] = (pointRGB & 0xff00) >> 8;
-				rgb[2] = (pointRGB & 0xff); 
-				//System.out.println(rgb[0]+"----"+ rgb[1]+"----"+rgb[2]);
-			}
-		}
-		*/
     	System.out.println("我们开始做对比");
 		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
 		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
@@ -120,6 +89,15 @@ public class ClipBoardUtil{
 			
 		}
 		return result_pic;
+    	
+    }
+    
+    //Make a program cut the pictures what I want from original picture.
+    public static Image cutPicture(BufferedImage origin_picture){
+		int pic_width = origin_picture.getWidth(); //get picture's width
+		int pic_height = origin_picture.getHeight();//get picture's height
+		
+    	return orgin_picure;
     	
     }
 }
