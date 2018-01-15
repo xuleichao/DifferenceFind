@@ -20,7 +20,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
-    	cutPic("test.png", "result_test_1.jpg", 0, 300, 1024, 768);
+    	cutPic("test.png", "result_test_1.jpg", 513, 300, 1024, 768);
 		cutPic("test.png", "result_test_2.jpg", 0, 300, 1024, 768);
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
