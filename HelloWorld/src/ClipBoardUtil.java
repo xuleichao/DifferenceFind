@@ -14,21 +14,23 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.*;
-import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
+    	cutPic("test.png", "result_test_1.jpg", 0, 300, 1024, 768);
+		cutPic("test.png", "result_test_2.jpg", 0, 300, 1024, 768);
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
     	System.out.println("我们开始做对比");
-		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a1.jpg"));
-		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/a2.jpg"));
+		BufferedImage ima1 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/result_test_1.jpg"));
+		BufferedImage ima2 = ImageIO.read(new File("G:/Github_codes/DifferenceFind/HelloWorld/result_test_2.jpg"));
 		BufferedImage a = (BufferedImage) getPictureArray(ima1,ima2);
 		ImageIO.write(a, "JPG", new File("G:/Github_codes/DifferenceFind/HelloWorld/result.jpg"));
 		System.out.println("搞定");
+		
     }
     public static void setSysClipboardText(String writeMe){  
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();  
@@ -114,9 +116,9 @@ public class ClipBoardUtil{
   
             // 获取文件格式  
             String ext = srcFile.substring(srcFile.lastIndexOf(".") + 1);  
-  
+            System.out.println(ext);
             // ImageReader声称能够解码指定格式  
-            Iterator it = (Iterator) ImageIO.getImageReadersByFormatName(ext);  
+            java.util.Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName(ext);  
             ImageReader reader = it.next();  
   
             // 获取图片流  
