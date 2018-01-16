@@ -20,8 +20,8 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
-    	cutPic("test.png", "result_test_1.jpg", 513, 0, 1024, 768);
-		cutPic("test.png", "result_test_2.jpg", 0, 0, 512, 768);
+    	cutPic("test.png", "result_test_1.jpg", 545, 310, 392, 294);
+		cutPic("test.png", "result_test_2.jpg", 90, 310, 392, 294);
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
     	System.out.println("我们开始做对比");
@@ -85,10 +85,12 @@ public class ClipBoardUtil{
 				if ((rgb_pic1[0] == rgb_pic2[0])
 						&&(rgb_pic1[1] == rgb_pic2[1])
 						&&(rgb_pic1[2] == rgb_pic2[2])){
-					result_pic.setRGB(x, y, 0xFF000000|rgb_pic1[0]|rgb_pic1[2]|rgb_pic1[2]);
+					result_pic.setRGB(x, y, 0xff000000);
 				}else{
-					result_pic.setRGB(x, y, 0xffffffff);
+					result_pic.setRGB(x, y, 0xff000000
+							|rgb_pic1[0]+abs(rgb_pic1[0]-rgb_pic2[0])|rgb_pic1[1]+abs(rgb_pic1[1]-rgb_pic2[1])|rgb_pic1[2]+abs(rgb_pic1[2]-rgb_pic2[2]));
 				}
+				//|abs(rgb_pic1[0]-rgb_pic2[0])|abs(rgb_pic1[1]-rgb_pic2[1])|abs(rgb_pic1[2]-rgb_pic2[2])
 				//return (Image)pic1;
 				
 				
@@ -99,7 +101,11 @@ public class ClipBoardUtil{
     	
     }
     
-    //Make a program cut the pictures what I want from original picture.
+    private static int abs(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	//Make a program cut the pictures what I want from original picture.
     // from CSDN:7893562
     public static boolean cutPic(String srcFile, String outFile, int x, int y,  
             int width, int height) {  
