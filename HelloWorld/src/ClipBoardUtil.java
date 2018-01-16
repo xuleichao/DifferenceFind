@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -80,15 +81,17 @@ public class ClipBoardUtil{
 				rgb_pic2[0] = (RGB_pic2 & 0xff0000) >> 16;
 				rgb_pic2[1] = (RGB_pic2 & 0xff00) >> 8;
 				rgb_pic2[2] = (RGB_pic2 & 0xff);
-				//System.out.println("1--"+rgb_pic1[0]+"---"+rgb_pic1[1]+"---"+rgb_pic1[2]);
-				//System.out.println("2--"+rgb_pic2[0]+"---"+rgb_pic2[1]+"---"+rgb_pic2[2]);
-				if ((rgb_pic1[0] == rgb_pic2[0])
-						&&(rgb_pic1[1] == rgb_pic2[1])
-						&&(rgb_pic1[2] == rgb_pic2[2])){
-					result_pic.setRGB(x, y, 0xff000000);
-				}else{
+				float[] hsv1 = new float[3];
+				float[] hsv2 = new float[3];
+				Color.RGBtoHSB(rgb_pic1[0],rgb_pic1[1],rgb_pic1[2],hsv1);
+				Color.RGBtoHSB(rgb_pic2[0],rgb_pic2[1],rgb_pic2[2],hsv2);
+				if ((abs(rgb_pic1[0] - rgb_pic2[0])<=150)
+						&& (abs(rgb_pic1[1] - rgb_pic2[1])<=150)
+						&& (abs(rgb_pic1[2] - rgb_pic2[2])<=150)){
 					result_pic.setRGB(x, y, 0xff000000
-							|rgb_pic1[0]+abs(rgb_pic1[0]-rgb_pic2[0])|rgb_pic1[1]+abs(rgb_pic1[1]-rgb_pic2[1])|rgb_pic1[2]+abs(rgb_pic1[2]-rgb_pic2[2]));
+							|rgb_pic1[0]|rgb_pic1[1]|rgb_pic1[2]);
+				}else{
+					result_pic.setRGB(x, y, 0xffffffff);
 				}
 				//|abs(rgb_pic1[0]-rgb_pic2[0])|abs(rgb_pic1[1]-rgb_pic2[1])|abs(rgb_pic1[2]-rgb_pic2[2])
 				//return (Image)pic1;
@@ -101,7 +104,11 @@ public class ClipBoardUtil{
     	
     }
     
-    private static int abs(int i) {
+    private static double abs(float f) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	private static int abs(int f) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
