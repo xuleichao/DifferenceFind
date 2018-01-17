@@ -22,7 +22,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 public class ClipBoardUtil{
     public static void main(String[] args) throws Exception{
     	cutPic("test.png", "result_test_1.jpg", 545, 310, 392, 294);
-		cutPic("test.png", "result_test_2.jpg", 90, 310, 392, 294);
+		cutPic("test.png", "result_test_2.jpg", 88, 310, 392, 294);
     	Image im;
     	ByteArrayOutputStream out = new ByteArrayOutputStream();
     	System.out.println("我们开始做对比");
@@ -81,19 +81,8 @@ public class ClipBoardUtil{
 				rgb_pic2[0] = (RGB_pic2 & 0xff0000) >> 16;
 				rgb_pic2[1] = (RGB_pic2 & 0xff00) >> 8;
 				rgb_pic2[2] = (RGB_pic2 & 0xff);
-				float[] hsv1 = new float[3];
-				float[] hsv2 = new float[3];
-				Color.RGBtoHSB(rgb_pic1[0],rgb_pic1[1],rgb_pic1[2],hsv1);
-				Color.RGBtoHSB(rgb_pic2[0],rgb_pic2[1],rgb_pic2[2],hsv2);
-				if ((abs(rgb_pic1[0] - rgb_pic2[0])<=150)
-						&& (abs(rgb_pic1[1] - rgb_pic2[1])<=150)
-						&& (abs(rgb_pic1[2] - rgb_pic2[2])<=150)){
-					result_pic.setRGB(x, y, 0xff000000
-							|rgb_pic1[0]|rgb_pic1[1]|rgb_pic1[2]);
-				}else{
-					result_pic.setRGB(x, y, 0xffffffff);
-				}
-				//|abs(rgb_pic1[0]-rgb_pic2[0])|abs(rgb_pic1[1]-rgb_pic2[1])|abs(rgb_pic1[2]-rgb_pic2[2])
+				result_pic.setRGB(x, y, 0xff000000
+						|abs(rgb_pic1[0]-rgb_pic2[0])|(rgb_pic1[1]-rgb_pic2[1])|(rgb_pic1[2]-rgb_pic2[2]));
 				//return (Image)pic1;
 				
 				
